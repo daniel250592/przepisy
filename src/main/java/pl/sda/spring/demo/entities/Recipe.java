@@ -1,18 +1,16 @@
-package pl.sda.spring.demo.models.recipe;
+package pl.sda.spring.demo.entities;
 
 import lombok.*;
-import pl.sda.spring.demo.models.product.Product;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
+@Table(name = "recipes")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@Table
 public class Recipe {
 
     @Id
@@ -30,9 +28,5 @@ public class Recipe {
     private int preparationTimeInMin;
 
     private int forHowManyPeople;
-
-    @ManyToMany(cascade = CascadeType.MERGE)
-    private List<Product> products;
-
 }
 

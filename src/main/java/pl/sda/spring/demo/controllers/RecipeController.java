@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.sda.spring.demo.models.recipe.Recipe;
-import pl.sda.spring.demo.models.recipe.RecipeDto;
+import pl.sda.spring.demo.entities.Recipe;
+import pl.sda.spring.demo.entitiesDto.RecipeDto;
 import pl.sda.spring.demo.services.RecipeService;
 
 import javax.validation.Valid;
@@ -26,8 +26,7 @@ public class RecipeController {
 
     @PostMapping("/new-recipe")
     public Recipe addRecipe(@Valid @RequestBody RecipeDto recipeDto) {
-        Recipe recipeWithId = recipeService.addRecipe(recipeDto);
-        return recipeWithId;
+        return recipeService.addRecipe(recipeDto);
     }
 
 

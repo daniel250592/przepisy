@@ -1,25 +1,22 @@
-package pl.sda.spring.demo.models.product;
+package pl.sda.spring.demo.entities;
 
 
 import lombok.*;
-import pl.sda.spring.demo.models.recipe.Recipe;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
-import java.util.Set;
 
 @Entity
+@Table(name = "products")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@Table
 public class Product {
 
     @Id
+    @GeneratedValue
     private int id;
 
     @Column(unique = true)
@@ -30,6 +27,4 @@ public class Product {
     @Min(1)
     private float price;
 
-    @ManyToMany
-    private Set<Recipe> recipes;
 }

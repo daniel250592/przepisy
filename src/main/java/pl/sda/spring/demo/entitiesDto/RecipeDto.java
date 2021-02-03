@@ -1,12 +1,10 @@
-package pl.sda.spring.demo.models.recipe;
+package pl.sda.spring.demo.entitiesDto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.hibernate.validator.constraints.Range;
-import pl.sda.spring.demo.models.product.Product;
 
 import javax.validation.constraints.*;
-import java.util.List;
 
 @AllArgsConstructor
 @Getter
@@ -49,5 +47,4 @@ public class RecipeDto {
     @Range(min = MIN_FED_PEOPLE, max = MAX_FED_PEOPLE)
     private final int forHowManyPeople;
 
-    private List<Product> products;
 }

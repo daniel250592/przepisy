@@ -2,9 +2,9 @@ package pl.sda.spring.demo.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.sda.spring.demo.models.recipe.Recipe;
-import pl.sda.spring.demo.models.recipe.RecipeDto;
-import pl.sda.spring.demo.repositories.RecipeRepository;
+import pl.sda.spring.demo.entities.Recipe;
+import pl.sda.spring.demo.entitiesDto.RecipeDto;
+import pl.sda.spring.demo.repositories.recipe.RecipeRepository;
 
 import java.util.List;
 import java.util.NoSuchElementException;
