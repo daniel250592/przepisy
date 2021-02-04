@@ -1,21 +1,17 @@
 package pl.sda.spring.demo.entities;
 
-
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 
 @Entity
-@Table(name = "products")
+@Table(name = "recipes")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Product {
-
-    private static final int MIN_PRICE = 1;
+public class RecipeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,9 +20,12 @@ public class Product {
     @Column(unique = true)
     private String name;
 
-    private String type;
+    private String description;
 
-    @Min(MIN_PRICE)
-    private float price;
+    private int calories;
 
+    private int preparationTimeInMin;
+
+    private int forHowManyPeople;
 }
+

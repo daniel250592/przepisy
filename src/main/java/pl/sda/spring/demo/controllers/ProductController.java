@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.sda.spring.demo.entities.Product;
+import pl.sda.spring.demo.entities.ProductEntity;
 import pl.sda.spring.demo.entitiesDto.ProductDto;
 import pl.sda.spring.demo.services.ProductService;
 
@@ -24,27 +24,27 @@ public class ProductController {
     }
 
     @PostMapping("/new-product")
-    public Product addProduct(@Valid @RequestBody ProductDto productDto) {
+    public ProductEntity addProduct(@Valid @RequestBody ProductDto productDto) {
         return productService.addProduct(productDto);
     }
 
     @GetMapping("/all-products")
-    public List<Product> getAllProducts() {
+    public List<ProductEntity> getAllProducts() {
         return productService.getAllProducts();
     }
 
     @GetMapping("/product{id}")
-    public Product getRecipeById(@PathVariable int id) {
+    public ProductEntity getRecipeById(@PathVariable int id) {
         return productService.getProductById(id);
     }
 
     @PutMapping("/recipe{id}")
-    public Product updateProductById(@PathVariable int id, @Valid @RequestBody ProductDto productDto) {
+    public ProductEntity updateProductById(@PathVariable int id, @Valid @RequestBody ProductDto productDto) {
         return productService.updateProductWithId(id, productDto);
     }
 
     @DeleteMapping("/product{id}")
-    public Product deleteProductById(@PathVariable int id) {
+    public ProductEntity deleteProductById(@PathVariable int id) {
         return productService.deleteProductWithId(id);
     }
 

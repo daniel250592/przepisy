@@ -4,7 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.sda.spring.demo.entities.Recipe;
+import pl.sda.spring.demo.entities.RecipeEntity;
+import pl.sda.spring.demo.entities.RecipesToProductsEntity;
 import pl.sda.spring.demo.entitiesDto.RecipeDto;
 import pl.sda.spring.demo.services.RecipeService;
 
@@ -24,29 +25,34 @@ public class RecipeController {
 
 
     @PostMapping("/new-recipe")
-    public Recipe addRecipe(@Valid @RequestBody RecipeDto recipeDto) {
+    public RecipeEntity addRecipe(@Valid @RequestBody RecipeDto recipeDto) {
         return recipeService.addRecipe(recipeDto);
     }
 
 
     @GetMapping("/all-recipes")
-    public List<Recipe> getAllRecipes() {
+    public List<RecipeEntity> getAllRecipes() {
         return recipeService.getAllRecipes();
     }
 
     @GetMapping({"/recipe{id}"})
-    public Recipe getRecipeById(@PathVariable int id) {
+    public RecipeEntity getRecipeById(@PathVariable int id) {
         return recipeService.getRecipeById(id);
     }
 
     @PutMapping("/recipe{id}")
-    public Recipe updateRecipeById(@PathVariable int id, @Valid @RequestBody RecipeDto recipeDto) {
+    public RecipeEntity updateRecipeById(@PathVariable int id, @Valid @RequestBody RecipeDto recipeDto) {
         return recipeService.updateRecipeWithId(id, recipeDto);
     }
 
     @DeleteMapping("/recipe{id}")
-    public Recipe deleteRecipeById(@PathVariable int id) {
+    public RecipeEntity deleteRecipeById(@PathVariable int id) {
         return recipeService.deleteRecipeWithId(id);
+    }
+
+    @PostMapping("/add-product{productid}-to-recipe{recipeid}")
+    public RecipesToProductsEntity addProductToRecipe(@PathVariable int productid, @PathVariable int recipeid){
+        return recipeService.addProductToRecipe(productid,recipeid);
     }
 
 

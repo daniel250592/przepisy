@@ -2,7 +2,7 @@ package pl.sda.spring.demo.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.sda.spring.demo.entities.Product;
+import pl.sda.spring.demo.entities.ProductEntity;
 import pl.sda.spring.demo.entitiesDto.ProductDto;
 import pl.sda.spring.demo.mappers.ProductMapper;
 import pl.sda.spring.demo.repositories.product.ProductRepository;
@@ -20,25 +20,25 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public Product addProduct(ProductDto productDto) {
-        Product product = ProductMapper.productMapper(productDto);
+    public ProductEntity addProduct(ProductDto productDto) {
+        ProductEntity productEntity = ProductMapper.productMapper(productDto);
 
-        return productRepository.addProduct(product);
+        return productRepository.addProduct(productEntity);
     }
 
-    public Product getProductById(int id){
+    public ProductEntity getProductById(int id){
         return productRepository.getProductById(id).orElseThrow(NoSuchElementException::new);
     }
 
-    public List<Product> getAllProducts(){
+    public List<ProductEntity> getAllProducts(){
         return productRepository.getAllProducts();
     }
 
-    public Product deleteProductWithId(int id){
+    public ProductEntity deleteProductWithId(int id){
         return productRepository.deleteProductWithId(id).orElseThrow(NoSuchElementException::new);
     }
 
-    public Product updateProductWithId(int id,ProductDto productDto){
+    public ProductEntity updateProductWithId(int id, ProductDto productDto){
         return productRepository.updateProductWithId(id,productDto);
     }
 }

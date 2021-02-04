@@ -2,7 +2,7 @@ package pl.sda.spring.demo.repositories.recipe;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import pl.sda.spring.demo.entities.Recipe;
+import pl.sda.spring.demo.entities.RecipeEntity;
 import pl.sda.spring.demo.entitiesDto.RecipeDto;
 import pl.sda.spring.demo.mappers.RecipeMapper;
 
@@ -20,25 +20,25 @@ public class RecipeRepository {
         this.recipeRepositoryInterface = recipeRepository;
     }
 
-    public Recipe addRecipe(Recipe recipe) {
-        return recipeRepositoryInterface.save(recipe);
+    public RecipeEntity addRecipe(RecipeEntity recipeEntity) {
+        return recipeRepositoryInterface.save(recipeEntity);
     }
 
-    public List<Recipe> getAllRecipes() {
+    public List<RecipeEntity> getAllRecipes() {
         return recipeRepositoryInterface.findAll();
     }
 
-    public Optional<Recipe> getRecipeById(int id) {
+    public Optional<RecipeEntity> getRecipeById(int id) {
         return recipeRepositoryInterface.findById(id);
     }
 
-    public Optional<Recipe> deleteRecipeWithId(int id) {
-        Optional<Recipe> recipe = getRecipeById(id);
+    public Optional<RecipeEntity> deleteRecipeWithId(int id) {
+        Optional<RecipeEntity> recipe = getRecipeById(id);
         recipeRepositoryInterface.deleteById(id);
         return recipe;
     }
 
-    public Recipe updateRecipeWithId(int id, RecipeDto recipeDto) {
+    public RecipeEntity updateRecipeWithId(int id, RecipeDto recipeDto) {
         deleteRecipeWithId(id).orElseThrow(NoSuchElementException::new);
         return addRecipe(RecipeMapper.recipeMapper(recipeDto));
     }

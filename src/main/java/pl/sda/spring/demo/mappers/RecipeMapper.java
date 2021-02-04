@@ -1,13 +1,13 @@
 package pl.sda.spring.demo.mappers;
 
-import pl.sda.spring.demo.entities.Recipe;
+import pl.sda.spring.demo.entities.RecipeEntity;
 import pl.sda.spring.demo.entitiesDto.RecipeDto;
 
 public class RecipeMapper {
 
-    public static Recipe recipeMapper(RecipeDto recipeDto) {
+    public static RecipeEntity recipeMapper(RecipeDto recipeDto) {
 
-        return Recipe.builder()
+        return RecipeEntity.builder()
                 .name(recipeDto.getName())
                 .description(recipeDto.getDescription())
                 .calories(recipeDto.getCalories())
@@ -16,14 +16,14 @@ public class RecipeMapper {
                 .build();
     }
 
-    public RecipeDto recipeMapper(Recipe recipe){
+    public RecipeDto recipeMapper(RecipeEntity recipeEntity){
 
         return RecipeDto.builder()
-                .name(recipe.getName())
-                .description(recipe.getDescription())
-                .calories(recipe.getCalories())
-                .preparationTimeInMin(recipe.getPreparationTimeInMin())
-                .forHowManyPeople(recipe.getForHowManyPeople())
+                .name(recipeEntity.getName())
+                .description(recipeEntity.getDescription())
+                .calories(recipeEntity.getCalories())
+                .preparationTimeInMin(recipeEntity.getPreparationTimeInMin())
+                .forHowManyPeople(recipeEntity.getForHowManyPeople())
                 .build();
     }
 

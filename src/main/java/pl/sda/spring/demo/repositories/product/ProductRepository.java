@@ -1,7 +1,7 @@
 package pl.sda.spring.demo.repositories.product;
 
 import org.springframework.stereotype.Repository;
-import pl.sda.spring.demo.entities.Product;
+import pl.sda.spring.demo.entities.ProductEntity;
 import pl.sda.spring.demo.entitiesDto.ProductDto;
 import pl.sda.spring.demo.mappers.ProductMapper;
 
@@ -18,25 +18,25 @@ public class ProductRepository {
         this.productRepositoryInterface = productRepositoryInterface;
     }
 
-    public Product addProduct(Product product) {
-        return productRepositoryInterface.save(product);
+    public ProductEntity addProduct(ProductEntity productEntity) {
+        return productRepositoryInterface.save(productEntity);
     }
 
-    public List<Product> getAllProducts() {
+    public List<ProductEntity> getAllProducts() {
         return productRepositoryInterface.findAll();
     }
 
-    public Optional<Product> getProductById(int id) {
+    public Optional<ProductEntity> getProductById(int id) {
         return productRepositoryInterface.findById(id);
     }
 
-    public Optional<Product> deleteProductWithId(int id) {
-        Optional<Product> product = getProductById(id);
+    public Optional<ProductEntity> deleteProductWithId(int id) {
+        Optional<ProductEntity> product = getProductById(id);
         productRepositoryInterface.deleteById(id);
         return product;
     }
 
-    public Product updateProductWithId(int id, ProductDto productDto) {
+    public ProductEntity updateProductWithId(int id, ProductDto productDto) {
         deleteProductWithId(id).orElseThrow(NoSuchElementException::new);
         return addProduct(ProductMapper.productMapper(productDto));
     }

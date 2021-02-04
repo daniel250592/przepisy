@@ -1,24 +1,24 @@
 package pl.sda.spring.demo.mappers;
 
-import pl.sda.spring.demo.entities.Product;
+import pl.sda.spring.demo.entities.ProductEntity;
 import pl.sda.spring.demo.entitiesDto.ProductDto;
 
 public class ProductMapper {
 
-    public static Product productMapper(ProductDto productDto) {
+    public static ProductEntity productMapper(ProductDto productDto) {
 
-        return Product.builder()
+        return ProductEntity.builder()
                 .name(productDto.getName())
                 .price(productDto.getPrice())
                 .type(productDto.getType())
                 .build();
     }
 
-    public static ProductDto productMapper(Product product){
+    public static ProductDto productMapper(ProductEntity productEntity){
         return ProductDto.builder()
-                .name(product.getName())
-                .price(product.getPrice())
-                .type(product.getType())
+                .name(productEntity.getName())
+                .price(productEntity.getPrice())
+                .type(productEntity.getType())
                 .build();
     }
 }
