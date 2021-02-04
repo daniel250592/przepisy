@@ -16,5 +16,16 @@ public class RecipeMapper {
                 .build();
     }
 
+    public RecipeDto recipeMapper(Recipe recipe){
+
+        return RecipeDto.builder()
+                .name(recipe.getName())
+                .description(recipe.getDescription())
+                .calories(recipe.getCalories())
+                .preparationTimeInMin(recipe.getPreparationTimeInMin())
+                .forHowManyPeople(recipe.getForHowManyPeople())
+                .build();
+    }
+
 
 }

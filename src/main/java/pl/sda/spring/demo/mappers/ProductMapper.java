@@ -13,4 +13,12 @@ public class ProductMapper {
                 .type(productDto.getType())
                 .build();
     }
+
+    public static ProductDto productMapper(Product product){
+        return ProductDto.builder()
+                .name(product.getName())
+                .price(product.getPrice())
+                .type(product.getType())
+                .build();
+    }
 }

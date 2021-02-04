@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.spring.demo.entities.Recipe;
 import pl.sda.spring.demo.entitiesDto.RecipeDto;
+import pl.sda.spring.demo.mappers.RecipeMapper;
 import pl.sda.spring.demo.repositories.recipe.RecipeRepository;
 
 import java.util.List;
@@ -20,14 +21,7 @@ public class RecipeService {
     }
 
     public Recipe addRecipe(RecipeDto recipeDto) {
-        Recipe recipe = Recipe.builder()
-                .id(null)
-                .name(recipeDto.getName())
-                .description(recipeDto.getDescription())
-                .calories(recipeDto.getCalories())
-                .preparationTimeInMin(recipeDto.getPreparationTimeInMin())
-                .forHowManyPeople(recipeDto.getForHowManyPeople())
-                .build();
+        Recipe recipe = RecipeMapper.recipeMapper(recipeDto);
 
         return recipeRepository.addRecipe(recipe);
     }
@@ -40,11 +34,11 @@ public class RecipeService {
         return recipeRepository.getAllRecipes();
     }
 
-    public Recipe deleterecipeWithId(int id) {
-        return recipeRepository.deleteRecipeWtihId(id).orElseThrow(NoSuchElementException::new);
+    public Recipe deleteRecipeWithId(int id) {
+        return recipeRepository.deleteRecipeWithId(id).orElseThrow(NoSuchElementException::new);
     }
 
-    public Recipe updateRecipeWithId(int id,RecipeDto recipeDto) {
-        return recipeRepository.updateRecipeWithId(id,recipeDto);
+    public Recipe updateRecipeWithId(int id, RecipeDto recipeDto) {
+        return recipeRepository.updateRecipeWithId(id, recipeDto);
     }
 }

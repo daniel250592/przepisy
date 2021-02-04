@@ -9,7 +9,6 @@ import pl.sda.spring.demo.entitiesDto.RecipeDto;
 import pl.sda.spring.demo.services.RecipeService;
 
 import javax.validation.Valid;
-import java.sql.SQLException;
 import java.util.List;
 
 @RestController
@@ -40,25 +39,21 @@ public class RecipeController {
         return recipeService.getRecipeById(id);
     }
 
-    @PutMapping("recipe{id}")
+    @PutMapping("/recipe{id}")
     public Recipe updateRecipeById(@PathVariable int id, @Valid @RequestBody RecipeDto recipeDto) {
         return recipeService.updateRecipeWithId(id, recipeDto);
     }
 
     @DeleteMapping("/recipe{id}")
     public Recipe deleteRecipeById(@PathVariable int id) {
-        return recipeService.deleterecipeWithId(id);
+        return recipeService.deleteRecipeWithId(id);
     }
 
 
-//    @ExceptionHandler(value = RuntimeException.class)
-//    public ResponseEntity<Object> handleNoSuchElementException(RuntimeException exception) {
-//        return new ResponseEntity<>("ogólny wyjatek", HttpStatus.BAD_REQUEST);
-//    }
-
-    @ExceptionHandler(value = SQLException.class)
-    public ResponseEntity<Object> handleNoSuchElementException(SQLException exception) {
-        return new ResponseEntity<>("Wyjątek z bazy danych", HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(value = RuntimeException.class)
+    public ResponseEntity<Object> handleNoSuchElementException(RuntimeException exception) {
+        return new ResponseEntity<>("ogólny wyjatek", HttpStatus.BAD_REQUEST);
     }
+
 }
 

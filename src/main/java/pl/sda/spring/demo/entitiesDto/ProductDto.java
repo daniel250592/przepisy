@@ -1,6 +1,7 @@
 package pl.sda.spring.demo.entitiesDto;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 import javax.validation.constraints.Min;
@@ -8,6 +9,7 @@ import javax.validation.constraints.Size;
 
 @AllArgsConstructor
 @Getter
+@Builder
 public class ProductDto {
 
     private static final int MIN_SIZE_NAME = 2;

@@ -14,13 +14,12 @@ import javax.persistence.*;
 public class Recipe {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(unique = true, length = 40)
+    @Column(unique = true)
     private String name;
 
-    @Column(length = 100)
     private String description;
 
     private int calories;

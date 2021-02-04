@@ -15,16 +15,18 @@ import javax.validation.constraints.Min;
 @Setter
 public class Product {
 
+    private static final int MIN_PRICE = 1;
+
     @Id
-    @GeneratedValue
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(unique = true)
     private String name;
 
     private String type;
 
-    @Min(1)
+    @Min(MIN_PRICE)
     private float price;
 
 }
