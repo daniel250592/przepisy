@@ -1,0 +1,1 @@
+Trzeba teraz napisać controller który umożliwi pobranie wszystkich skladnikow danego przepisu np SELEct * from recipe where recipeid = 1

@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pl.sda.spring.demo.entities.PairEntity;
 import pl.sda.spring.demo.entities.RecipeEntity;
-import pl.sda.spring.demo.entities.RecipesToProductsEntity;
 import pl.sda.spring.demo.entitiesDto.RecipeDto;
 import pl.sda.spring.demo.services.RecipeService;
 
@@ -25,13 +25,13 @@ public class RecipeController {
 
 
     @PostMapping("/new-recipe")
-    public RecipeEntity addRecipe(@Valid @RequestBody RecipeDto recipeDto) {
+    public RecipeDto addRecipe(@Valid @RequestBody RecipeDto recipeDto) {
         return recipeService.addRecipe(recipeDto);
     }
 
 
     @GetMapping("/all-recipes")
-    public List<RecipeEntity> getAllRecipes() {
+    public List<RecipeDto> getAllRecipes() {
         return recipeService.getAllRecipes();
     }
 
@@ -51,8 +51,8 @@ public class RecipeController {
     }
 
     @PostMapping("/add-product{productid}-to-recipe{recipeid}")
-    public RecipesToProductsEntity addProductToRecipe(@PathVariable int productid, @PathVariable int recipeid){
-        return recipeService.addProductToRecipe(productid,recipeid);
+    public PairEntity addProductToRecipe(@PathVariable int productid, @PathVariable int recipeid) {
+        return recipeService.addProductToRecipe(productid, recipeid);
     }
 
 

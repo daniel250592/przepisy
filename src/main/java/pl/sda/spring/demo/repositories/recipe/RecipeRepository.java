@@ -13,28 +13,28 @@ import java.util.Optional;
 @Repository
 public class RecipeRepository {
 
-    private final RecipeRepositoryInterface recipeRepositoryInterface;
+    private final RecipeRepositoryApi recipeRepositoryApi;
 
     @Autowired
-    public RecipeRepository(RecipeRepositoryInterface recipeRepository) {
-        this.recipeRepositoryInterface = recipeRepository;
+    public RecipeRepository(RecipeRepositoryApi recipeRepository) {
+        this.recipeRepositoryApi = recipeRepository;
     }
 
     public RecipeEntity addRecipe(RecipeEntity recipeEntity) {
-        return recipeRepositoryInterface.save(recipeEntity);
+        return recipeRepositoryApi.save(recipeEntity);
     }
 
     public List<RecipeEntity> getAllRecipes() {
-        return recipeRepositoryInterface.findAll();
+        return recipeRepositoryApi.findAll();
     }
 
     public Optional<RecipeEntity> getRecipeById(int id) {
-        return recipeRepositoryInterface.findById(id);
+        return recipeRepositoryApi.findById(id);
     }
 
     public Optional<RecipeEntity> deleteRecipeWithId(int id) {
         Optional<RecipeEntity> recipe = getRecipeById(id);
-        recipeRepositoryInterface.deleteById(id);
+        recipeRepositoryApi.deleteById(id);
         return recipe;
     }
 

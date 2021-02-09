@@ -12,41 +12,27 @@ import javax.validation.constraints.*;
 @Builder
 public class RecipeDto {
 
-    private static final int MIN_SIZE_NAME = 2;
-    private static final int MAX_SIZE_NAME = 40;
-
-    private static final int MIN_SIZE_DESCRIPTION = 10;
-    private static final int MAX_SIZE_DESCRIPTION = 100;
-
-    private static final int MAX_CALORIES = 20000;
-
-    private static final int MIN_RANGE_PREPARATION = 15;
-    private static final int MAX_RANGE_PREPARATION = 240;
-
-    private static final int MIN_FED_PEOPLE = 1;
-    private static final int MAX_FED_PEOPLE = 10;
-
+    private final Integer id;
 
     @NotBlank
     @NotEmpty
     @NotNull
-    @Size(min = MIN_SIZE_NAME, max = MAX_SIZE_NAME,
-            message = "Nazwa powinna zawierać co najmniej " + MIN_SIZE_NAME + " znaki i nie więcej " + MAX_SIZE_NAME + ".")
+    @Size(min = 2, max = 40,
+            message = "Nazwa powinna zawierać co najmniej 2 znaki i nie więcej nic 40.")
     private final String name;
-
 
     @NotEmpty
     @NotNull
-    @Size(min = MIN_SIZE_DESCRIPTION, max = MAX_SIZE_DESCRIPTION)
+    @Size(min = 10, max = 100)
     private final String description;
 
-    @Max(MAX_CALORIES)
+    @Max(20000)
     private final int calories;
 
-    @Range(min = MIN_RANGE_PREPARATION, max = MAX_RANGE_PREPARATION)
+    @Range(min = 15, max = 240)
     private final int preparationTimeInMin;
 
-    @Range(min = MIN_FED_PEOPLE, max = MAX_FED_PEOPLE)
+    @Range(min = 1, max = 10)
     private final int forHowManyPeople;
 
 }

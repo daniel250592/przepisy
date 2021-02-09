@@ -17,14 +17,14 @@ public class ProductDto {
 
     private static final int MIN_PRICE = 0;
 
-    @Size(min = MIN_SIZE_NAME,max = MAX_SIZE_NAME,
-            message = "Nazwa powinna zawierać co najmniej " + MIN_SIZE_NAME + " znaki i nie więcej " + MAX_SIZE_NAME + ".")
-    private String name;
+    @Size(min = 2, max = 40,
+            message = "Nazwa powinna zawierać co najmniej 2 znaki i nie więcej niż 40.")
+    private final String name;
 
-    private String type;
+    private final String type;
 
 
-    @Min(MIN_PRICE)
-    private float price;
+    @Min(0)
+    private final float price;
 
 }

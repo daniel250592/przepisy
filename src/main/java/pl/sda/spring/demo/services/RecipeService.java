@@ -2,39 +2,39 @@ package pl.sda.spring.demo.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.sda.spring.demo.entities.PairEntity;
 import pl.sda.spring.demo.entities.RecipeEntity;
-import pl.sda.spring.demo.entities.RecipesToProductsEntity;
 import pl.sda.spring.demo.entitiesDto.RecipeDto;
 import pl.sda.spring.demo.mappers.RecipeMapper;
 import pl.sda.spring.demo.repositories.recipe.RecipeRepository;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Service
 public class RecipeService {
 
     private final RecipeRepository recipeRepository;
-    private final RecipeToProductService recipeToProductService;
+    private final PairService pairService;
 
     @Autowired
-    public RecipeService(RecipeRepository recipeRepository, RecipeToProductService recipeToProductService) {
+    public RecipeService(RecipeRepository recipeRepository, PairService pairService) {
         this.recipeRepository = recipeRepository;
-        this.recipeToProductService = recipeToProductService;
+        this.pairService = pairService;
     }
 
-    public RecipeEntity addRecipe(RecipeDto recipeDto) {
-        RecipeEntity recipeEntity = RecipeMapper.recipeMapper(recipeDto);
-
-        return recipeRepository.addRecipe(recipeEntity);
+    public RecipeDto addRecipe(RecipeDto recipeDto) {
+        RecipeEntity recipeEntityWithId = recipeRepository.addRecipe(RecipeMapper.recipeMapper(recipeDto));
+        return RecipeMapper.recipeMapper(recipeEntityWithId);
     }
 
     public RecipeEntity getRecipeById(int id) {
         return recipeRepository.getRecipeById(id).orElseThrow(NoSuchElementException::new);
     }
 
-    public List<RecipeEntity> getAllRecipes() {
-        return recipeRepository.getAllRecipes();
+    public List<RecipeDto> getAllRecipes() {
+        return recipeRepository.getAllRecipes().stream().map(RecipeMapper::recipeMapper).collect(Collectors.toList());
     }
 
     public RecipeEntity deleteRecipeWithId(int id) {
@@ -45,9 +45,9 @@ public class RecipeService {
         return recipeRepository.updateRecipeWithId(id, recipeDto);
     }
 
-    public RecipesToProductsEntity addProductToRecipe(int productid, int recipeid) {
+    public PairEntity addProductToRecipe(int productid, int recipeid) {
         RecipeEntity recipeEntity = recipeRepository.getRecipeById(recipeid).orElseThrow(NoSuchElementException::new);
-        return recipeToProductService.addProductToRecipe(productid, recipeEntity);
+        return pairService.addProductToRecipe(productid, recipeEntity);
 
     }
 }

@@ -1,6 +1,5 @@
 package pl.sda.spring.demo.entities;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,15 +10,16 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class RecipesToProductsEntity {
+@Table(name = "Product_to_recipe")
+public class PairEntity<T extends RecipeEntity, R extends ProductEntity> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne
-    private RecipeEntity recipeEntity;
+    @ManyToOne(targetEntity = RecipeEntity.class)
+    private T recipeEntity;
 
-    @ManyToOne
-    private ProductEntity productEntity;
+    @ManyToOne(targetEntity = ProductEntity.class)
+    private R productEntity;
 }

@@ -16,9 +16,9 @@ public class Runner implements CommandLineRunner {
     public void run(String... args) {
 
 
-        RecipeDto pierozki = new RecipeDto("Pierozki", "Pyszne pierozki od mamusi", 650, 15, 1);
-        RecipeDto zupaPomidorowa = new RecipeDto("Zupa pomidorowa", "Pyszne zupa pomidorowa od mamusi", 350, 20, 1);
-        RecipeDto makaron = new RecipeDto("Makaron z kurczakiem", "Pyszny makaron z kurczakiem", 1200, 75, 4);
+        RecipeDto pierozki = new RecipeDto(null,"Pierozki", "Pyszne pierozki od mamusi", 650, 15, 1);
+        RecipeDto zupaPomidorowa = new RecipeDto(null,"Zupa pomidorowa", "Pyszne zupa pomidorowa od mamusi", 350, 20, 1);
+        RecipeDto makaron = new RecipeDto(null,"Makaron z kurczakiem", "Pyszny makaron z kurczakiem", 1200, 75, 4);
 
         recipeController.addRecipe(pierozki);
         recipeController.addRecipe(zupaPomidorowa);

@@ -14,7 +14,7 @@ public class ProductMapper {
                 .build();
     }
 
-    public static ProductDto productMapper(ProductEntity productEntity){
+    public static ProductDto productMapper(ProductEntity productEntity) {
         return ProductDto.builder()
                 .name(productEntity.getName())
                 .price(productEntity.getPrice())

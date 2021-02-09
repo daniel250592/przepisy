@@ -12,27 +12,27 @@ import java.util.Optional;
 @Repository
 public class ProductRepository {
 
-    private final ProductRepositoryInterface productRepositoryInterface;
+    private final ProductRepositoryApi productRepositoryApi;
 
-    public ProductRepository(ProductRepositoryInterface productRepositoryInterface) {
-        this.productRepositoryInterface = productRepositoryInterface;
+    public ProductRepository(ProductRepositoryApi productRepositoryApi) {
+        this.productRepositoryApi = productRepositoryApi;
     }
 
     public ProductEntity addProduct(ProductEntity productEntity) {
-        return productRepositoryInterface.save(productEntity);
+        return productRepositoryApi.save(productEntity);
     }
 
     public List<ProductEntity> getAllProducts() {
-        return productRepositoryInterface.findAll();
+        return productRepositoryApi.findAll();
     }
 
     public Optional<ProductEntity> getProductById(int id) {
-        return productRepositoryInterface.findById(id);
+        return productRepositoryApi.findById(id);
     }
 
     public Optional<ProductEntity> deleteProductWithId(int id) {
         Optional<ProductEntity> product = getProductById(id);
-        productRepositoryInterface.deleteById(id);
+        productRepositoryApi.deleteById(id);
         return product;
     }
 

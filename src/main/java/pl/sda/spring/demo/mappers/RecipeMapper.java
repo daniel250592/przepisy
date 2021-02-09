@@ -16,9 +16,10 @@ public class RecipeMapper {
                 .build();
     }
 
-    public RecipeDto recipeMapper(RecipeEntity recipeEntity){
+    public static RecipeDto recipeMapper(RecipeEntity recipeEntity) {
 
         return RecipeDto.builder()
+                .id(recipeEntity.getId())
                 .name(recipeEntity.getName())
                 .description(recipeEntity.getDescription())
                 .calories(recipeEntity.getCalories())

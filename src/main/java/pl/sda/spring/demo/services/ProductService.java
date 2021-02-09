@@ -26,19 +26,19 @@ public class ProductService {
         return productRepository.addProduct(productEntity);
     }
 
-    public ProductEntity getProductById(int id){
+    public ProductEntity getProductById(int id) {
         return productRepository.getProductById(id).orElseThrow(NoSuchElementException::new);
     }
 
-    public List<ProductEntity> getAllProducts(){
+    public List<ProductEntity> getAllProducts() {
         return productRepository.getAllProducts();
     }
 
-    public ProductEntity deleteProductWithId(int id){
+    public ProductEntity deleteProductWithId(int id) {
         return productRepository.deleteProductWithId(id).orElseThrow(NoSuchElementException::new);
     }
 
-    public ProductEntity updateProductWithId(int id, ProductDto productDto){
-        return productRepository.updateProductWithId(id,productDto);
+    public ProductEntity updateProductWithId(int id, ProductDto productDto) {
+        return productRepository.updateProductWithId(id, productDto);
     }
 }
