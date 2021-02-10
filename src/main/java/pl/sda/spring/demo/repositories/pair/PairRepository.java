@@ -3,6 +3,8 @@ package pl.sda.spring.demo.repositories.pair;
 import org.springframework.stereotype.Repository;
 import pl.sda.spring.demo.entities.PairEntity;
 
+import java.util.List;
+
 @Repository
 public class PairRepository {
 
@@ -14,5 +16,9 @@ public class PairRepository {
 
     public PairEntity addProductToRecipe(PairEntity pairEntity) {
         return pairApi.save(pairEntity);
+    }
+
+    public List<Integer> getProductsFromRecipeWithId(int id) {
+        return pairApi.findAByRecipeEntityIdLike(id);
     }
 }

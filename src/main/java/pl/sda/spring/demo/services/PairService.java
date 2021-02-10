@@ -7,6 +7,8 @@ import pl.sda.spring.demo.entities.ProductEntity;
 import pl.sda.spring.demo.entities.RecipeEntity;
 import pl.sda.spring.demo.repositories.pair.PairRepository;
 
+import java.util.List;
+
 @Service
 public class PairService {
 
@@ -26,11 +28,17 @@ public class PairService {
         ProductEntity product = productService.getProductById(productId);
 
 
-        PairEntity<RecipeEntity, ProductEntity> pairEntity = new PairEntity<>();
+        var pairEntity = new PairEntity<ProductEntity, RecipeEntity>();
         pairEntity.setProductEntity(product);
         pairEntity.setRecipeEntity(recipeEntity);
 
         return pairRepository.addProductToRecipe(pairEntity);
+
+    }
+
+
+    public List<Integer> getProductsFromRecipeWithId(int id) {
+        return pairRepository.getProductsFromRecipeWithId(id);
 
     }
 }

@@ -11,15 +11,15 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name = "Product_to_recipe")
-public class PairEntity<T extends RecipeEntity, R extends ProductEntity> {
+public class PairEntity<T extends ProductEntity, R extends RecipeEntity> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @ManyToOne(targetEntity = RecipeEntity.class)
-    private T recipeEntity;
+    private T productEntity;
 
     @ManyToOne(targetEntity = ProductEntity.class)
-    private R productEntity;
+    private R recipeEntity;
 }

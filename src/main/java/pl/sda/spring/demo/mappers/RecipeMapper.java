@@ -11,7 +11,7 @@ public class RecipeMapper {
                 .name(recipeDto.getName())
                 .description(recipeDto.getDescription())
                 .calories(recipeDto.getCalories())
-                .forHowManyPeople(recipeDto.getForHowManyPeople())
+                .preparationTimeInMin(recipeDto.getPreparationTimeInMin())
                 .forHowManyPeople(recipeDto.getForHowManyPeople())
                 .build();
     }

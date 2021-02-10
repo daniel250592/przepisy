@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.sda.spring.demo.entities.PairEntity;
+import pl.sda.spring.demo.entities.ProductEntity;
 import pl.sda.spring.demo.entities.RecipeEntity;
 import pl.sda.spring.demo.entitiesDto.RecipeDto;
 import pl.sda.spring.demo.services.RecipeService;
@@ -53,6 +54,11 @@ public class RecipeController {
     @PostMapping("/add-product{productid}-to-recipe{recipeid}")
     public PairEntity addProductToRecipe(@PathVariable int productid, @PathVariable int recipeid) {
         return recipeService.addProductToRecipe(productid, recipeid);
+    }
+
+    @GetMapping("/products-recipe{id}")
+    public List<ProductEntity> getAllProductsFromRecipeWithId(@PathVariable int id) {
+        return recipeService.getAllProductsFromRecipeWithId(id);
     }
 
 

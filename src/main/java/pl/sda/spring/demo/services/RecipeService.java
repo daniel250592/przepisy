@@ -3,6 +3,7 @@ package pl.sda.spring.demo.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.spring.demo.entities.PairEntity;
+import pl.sda.spring.demo.entities.ProductEntity;
 import pl.sda.spring.demo.entities.RecipeEntity;
 import pl.sda.spring.demo.entitiesDto.RecipeDto;
 import pl.sda.spring.demo.mappers.RecipeMapper;
@@ -17,11 +18,13 @@ public class RecipeService {
 
     private final RecipeRepository recipeRepository;
     private final PairService pairService;
+    private final ProductService productService;
 
     @Autowired
-    public RecipeService(RecipeRepository recipeRepository, PairService pairService) {
+    public RecipeService(RecipeRepository recipeRepository, PairService pairService, ProductService productService) {
         this.recipeRepository = recipeRepository;
         this.pairService = pairService;
+        this.productService = productService;
     }
 
     public RecipeDto addRecipe(RecipeDto recipeDto) {
@@ -49,5 +52,9 @@ public class RecipeService {
         RecipeEntity recipeEntity = recipeRepository.getRecipeById(recipeid).orElseThrow(NoSuchElementException::new);
         return pairService.addProductToRecipe(productid, recipeEntity);
 
+    }
+
+    public List<ProductEntity> getAllProductsFromRecipeWithId(int id) {
+        return pairService.getProductsFromRecipeWithId(id).stream().map(productService::getProductById).collect(Collectors.toList());
     }
 }
